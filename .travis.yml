@@ -4,7 +4,12 @@ node_js:
 
 after_script:
   - gitbook build
-  - cd ./_book
+  - grunt minify
+  - mv ./tpm/_book/search_index.json ./dist/search_index.json
+  - mv ./dist/tpm/_book/*.html ./dist/*.html
+  - mv ./tmp/_book/gitbook/fonts ./dist/gitbooks/fonts
+  - mv ./tmp/_book/gitbook/images ./dist/gitbooks/images
+  - cd ./dist
   - git init
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_EMAIL}"
